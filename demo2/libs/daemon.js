@@ -12,7 +12,7 @@ function spawn(server, config){
 }
 
 function main(argv) {
-    spawn('server.js', argv[0]);
+    spawn('./demo2/libs/server.js', argv[0]);
     process.on('SIGTERM',function () {
         worker.kill();
         process.exit(0);

@@ -69,7 +69,7 @@ function  parseURL(root, url) {
     base = parts[0];
     
     pathNames = parts[1].split('.').map(function (value) {
-        return path.json(root, base, value);
+        return path.join(root, base, value);
     });
     
     return {

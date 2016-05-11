@@ -37,7 +37,7 @@ function main(argv) {
 }
 
 function  parseURL(root, url) {
-    var base, pathNames, parts;
+    var base, pathnames, parts;
     
     if(url.indexOf('??')===-1){
         url = url.replace('/','/??');
@@ -46,13 +46,13 @@ function  parseURL(root, url) {
     parts = url.split('??');
     base = parts[0];
     
-    pathNames = parts[1].split('.').map(function (value) {
-        return path.json(root, base, value);
+    pathnames = parts[1].split(',').map(function (value) {
+        return path.join(root, base, value);
     });
     
     return {
-        mime:MIME[path.extname(pathNames[0])]||"text/plain",
-        pathNames:pathNames
+        mime:MIME[path.extname(pathnames[0])]||"text/plain",
+        pathnames:pathnames
     };
 }
 
@@ -89,3 +89,5 @@ function validateFiles(pathnames, callback) {
         }
     }(0, pathnames.length));
 }
+
+main(process.argv.slice(2));
